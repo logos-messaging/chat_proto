@@ -1,0 +1,33 @@
+name: Rust
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - "**README.md"
+      - ".gitignore"
+      - "LICENSE"
+
+jobs:
+  test:
+    name: Cargo Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Check Rust bindings
+        working-directory: gen/rust
+        run: cargo check --all-targets
+
+      - name: Test Rust bindings
+        working-directory: gen/rust
+        run: cargo test
