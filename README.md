@@ -1,6 +1,6 @@
 # Chat Protobuf Definitionss
 
-This repository contains the canonical **protobuf definitions** for the WAP (Waku Application Protocol) used by LibChat and related components.
+This repository contains the canonical **protobuf definitions** for the logoschat (Logos Chat Protocol) used by LibChat and related components.
 
 It is **schema-only**:
 - No application logic
@@ -51,7 +51,7 @@ chat-proto = { git = "https://github.com/logos-messaging/chat_proto" }
 
 Example import:
 ```
-use chat_proto::wap::{
+use chat_proto::logoschat::{
     inbox::InboxV1Frame,
     invite::InvitePrivateV1,
     encryption::EncryptedPayload,
