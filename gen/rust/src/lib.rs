@@ -1,37 +1,37 @@
 // #![allow(clippy::all)]
 // #![allow(warnings)]
 
-pub mod wap {
+pub mod logoschat {
     pub mod convos {
         pub mod private_v1 {
-            include!("wap/convos/private_v1/wap.convos.private_v1.rs");
+            include!("logoschat/convos/private_v1/logoschat.convos.private_v1.rs");
         }
     }
 
     pub mod encryption {
-        include!("wap/encryption/wap.encryption.rs");
+        include!("logoschat/encryption/logoschat.encryption.rs");
     }
 
     pub mod envelope {
-        include!("wap/envelope/wap.envelope.rs");
+        include!("logoschat/envelope/logoschat.envelope.rs");
     }
 
     pub mod inbox {
-        include!("wap/inbox/wap.inbox.rs");
+        include!("logoschat/inbox/logoschat.inbox.rs");
     }
 
     pub mod invite {
-        include!("wap/invite/wap.invite.rs");
+        include!("logoschat/invite/logoschat.invite.rs");
     }
 
     pub mod reliability {
-        include!("wap/reliability/wap.reliability.rs");
+        include!("logoschat/reliability/logoschat.reliability.rs");
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::wap::{
+    use super::logoschat::{
         encryption::{encrypted_payload::Encryption, EncryptedPayload, Plaintext},
         inbox::{inbox_v1_frame::FrameType, InboxV1Frame, Note},
         invite::InvitePrivateV1,

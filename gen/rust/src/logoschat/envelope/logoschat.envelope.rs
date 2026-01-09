@@ -5,7 +5,7 @@
 // /////////////////////////////////////////////////////////////////////////////
 
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
-pub struct WapEnvelopeV1 {
+pub struct EnvelopeV1 {
     #[prost(string, tag="1")]
     pub conversation_hint: ::prost::alloc::string::String,
     #[prost(uint64, tag="2")]

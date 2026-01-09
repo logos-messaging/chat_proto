@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package wap.envelope;
+package logoschat.envelope;
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Payload Framing Messages
 ///////////////////////////////////////////////////////////////////////////////
 
-message WapEnvelopeV1 {
+message EnvelopeV1 {
     
     string conversation_hint = 1;
     uint64 salt = 2;           
