@@ -4,7 +4,7 @@
 /// Alternatives: ???
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct EncryptedPayload {
-    #[prost(oneof="encrypted_payload::Encryption", tags="1, 2")]
+    #[prost(oneof="encrypted_payload::Encryption", tags="1, 2, 3")]
     pub encryption: ::core::option::Option<encrypted_payload::Encryption>,
 }
 /// Nested message and enum types in `EncryptedPayload`.
@@ -15,6 +15,8 @@ pub mod encrypted_payload {
         Plaintext(super::Plaintext),
         #[prost(message, tag="2")]
         Doubleratchet(super::Doubleratchet),
+        #[prost(message, tag="3")]
+        Xk0(super::Xk0),
     }
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
@@ -35,5 +37,18 @@ pub struct Doubleratchet {
     pub ciphertext: ::prost::bytes::Bytes,
     #[prost(string, tag="5")]
     pub aux: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct Xk0 {
+    #[prost(bytes="bytes", tag="1")]
+    pub initiator_static: ::prost::bytes::Bytes,
+    #[prost(bytes="bytes", tag="2")]
+    pub initiator_ephemeral: ::prost::bytes::Bytes,
+    #[prost(bytes="bytes", tag="3")]
+    pub responder_static: ::prost::bytes::Bytes,
+    #[prost(bytes="bytes", tag="4")]
+    pub responder_ephemeral: ::prost::bytes::Bytes,
+    #[prost(bytes="bytes", tag="5")]
+    pub payload: ::prost::bytes::Bytes,
 }
 // @@protoc_insertion_point(module)
