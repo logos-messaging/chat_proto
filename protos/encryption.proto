@@ -10,6 +10,7 @@ message EncryptedPayload {
     oneof encryption {
         encryption.Plaintext plaintext = 1;
 		encryption.Doubleratchet doubleratchet = 2;
+        encryption.XK0 xk0 = 3;
     }
 }
 
@@ -23,4 +24,12 @@ message Doubleratchet {
     uint32 prevChainLen = 3;
     bytes ciphertext = 4;
     string aux = 5;
+}
+
+message XK0 {
+    bytes initiator_static = 1;    
+    bytes initiator_ephemeral = 2;  
+    bytes responder_static = 3;    
+    bytes responder_ephemeral = 4; 
+    bytes payload = 5;
 }
