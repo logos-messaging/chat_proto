@@ -7,19 +7,15 @@ pub struct Note {
 }
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct InboxV1Frame {
-    #[prost(string, tag="1")]
-    pub recipient: ::prost::alloc::string::String,
-    #[prost(oneof="inbox_v1_frame::FrameType", tags="10, 11")]
+    #[prost(oneof="inbox_v1_frame::FrameType", tags="1")]
     pub frame_type: ::core::option::Option<inbox_v1_frame::FrameType>,
 }
 /// Nested message and enum types in `InboxV1Frame`.
 pub mod inbox_v1_frame {
     #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
     pub enum FrameType {
-        #[prost(message, tag="10")]
+        #[prost(message, tag="1")]
         InvitePrivateV1(super::super::invite::InvitePrivateV1),
-        #[prost(message, tag="11")]
-        Note(super::Note),
     }
 }
 // @@protoc_insertion_point(module)
