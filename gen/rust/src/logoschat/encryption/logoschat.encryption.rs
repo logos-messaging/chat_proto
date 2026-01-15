@@ -46,6 +46,7 @@ pub struct Xk0 {
     pub initiator_ephemeral: ::prost::bytes::Bytes,
     #[prost(bytes="bytes", tag="3")]
     pub responder_static: ::prost::bytes::Bytes,
+    /// Replace with RKI to save bytes
     #[prost(bytes="bytes", tag="4")]
     pub responder_ephemeral: ::prost::bytes::Bytes,
     #[prost(bytes="bytes", tag="5")]

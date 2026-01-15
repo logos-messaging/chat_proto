@@ -30,6 +30,6 @@ message XK0 {
     bytes initiator_static = 1;    
     bytes initiator_ephemeral = 2;  
     bytes responder_static = 3;    
-    bytes responder_ephemeral = 4; 
+    bytes responder_ephemeral = 4; // Replace with RKI to save bytes
     bytes payload = 5;
 }
