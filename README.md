@@ -1,4 +1,4 @@
-# Chat Protobuf Definitionss
+# Chat Protobuf Definitions
 
 This repository contains the canonical **protobuf definitions** for the logoschat (Logos Chat Protocol) used by LibChat and related components.
 
