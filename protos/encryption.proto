@@ -8,7 +8,7 @@ message EncryptedPayload {
     oneof encryption {
         encryption.Plaintext plaintext = 1;
 		encryption.Doubleratchet doubleratchet = 2;
-        encryption.XK0 xk0 = 3;
+        encryption.InboxHandshakeV1 inbox_handshake = 3;
     }
 }
 
