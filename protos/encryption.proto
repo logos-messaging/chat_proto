@@ -3,14 +3,12 @@ syntax = "proto3";
 package logoschat.encryption;
 
 
-// TODO: This also encompasses plaintexts, is there a better name?
-// Alternatives: ???
 message EncryptedPayload {
 
     oneof encryption {
         encryption.Plaintext plaintext = 1;
 		encryption.Doubleratchet doubleratchet = 2;
-        encryption.XK0 xk0 = 3;
+        encryption.InboxHandshakeV1 inbox_handshake = 3;
     }
 }
 
@@ -26,10 +24,14 @@ message Doubleratchet {
     string aux = 5;
 }
 
-message XK0 {
-    bytes initiator_static = 1;    
-    bytes initiator_ephemeral = 2;  
-    bytes responder_static = 3;    
-    bytes responder_ephemeral = 4; // Replace with RKI to save bytes
-    bytes payload = 5;
+message InboxHandshakeV1 {
+
+    message InboxHeaderV1 {
+        bytes initiator_static = 1;    
+        bytes initiator_ephemeral = 2;  
+        bytes responder_static = 3;    
+        bytes responder_ephemeral = 4; // Replace with RKI to save bytes
+    }
+    InboxHeaderV1 header = 1;
+    bytes payload = 2;
 }
