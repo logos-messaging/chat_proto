@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package logoschat.intro;
+
+message IntroBundle {
+  bytes installation_pubkey = 1;
+  bytes ephemeral_pubkey    = 2;
+  bytes signature           = 3;
+}

@@ -27,6 +27,10 @@ pub mod logoschat {
     pub mod reliability {
         include!("logoschat/reliability/logoschat.reliability.rs");
     }
+
+    pub mod intro {
+        include!("logoschat/intro/logoschat.intro.rs");
+    }
 }
 
 #[cfg(test)]
