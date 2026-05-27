@@ -8,8 +8,7 @@ package logoschat.reliability;
 
 message HistoryEntry {
     string message_id = 1;        // Unique identifier of the SDS message, as defined in `Message`
-    bytes retrieval_hint = 2;     // Optional information to help remote parties retrieve this SDS
-                                  // message; For example, A Waku deterministic message hash or routing payload hash
+    bytes retrieval_hint = 2;     // Optional information to help remote parties retrieve this SDS message; For example, A Waku deterministic message hash or routing payload hash
     string sender_id = 3;         // Original message sender's participant ID (routing hint)
   }
 

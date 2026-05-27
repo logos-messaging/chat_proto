@@ -9,11 +9,9 @@ pub struct HistoryEntry {
     /// Unique identifier of the SDS message, as defined in `Message`
     #[prost(string, tag="1")]
     pub message_id: ::prost::alloc::string::String,
-    /// Optional information to help remote parties retrieve this SDS
+    /// Optional information to help remote parties retrieve this SDS message; For example, A Waku deterministic message hash or routing payload hash
     #[prost(bytes="bytes", tag="2")]
     pub retrieval_hint: ::prost::bytes::Bytes,
-    /// message; For example, A Waku deterministic message hash or routing payload hash
-    ///
     /// Original message sender's participant ID (routing hint)
     #[prost(string, tag="3")]
     pub sender_id: ::prost::alloc::string::String,
