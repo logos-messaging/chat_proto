@@ -8,16 +8,18 @@ package logoschat.reliability;
 
 message HistoryEntry {
     string message_id = 1;        // Unique identifier of the SDS message, as defined in `Message`
-    bytes retrieval_hint = 2;     // Optional information to help remote parties retrieve this SDS 
+    bytes retrieval_hint = 2;     // Optional information to help remote parties retrieve this SDS
                                   // message; For example, A Waku deterministic message hash or routing payload hash
+    string sender_id = 3;         // Original message sender's participant ID (routing hint)
   }
-  
+
   message ReliablePayload {
-      string message_id = 2;      
-      string channel_id = 3;  
-      int32 lamport_timestamp = 10;    
-      repeated HistoryEntry causal_history = 11;   
-      bytes bloom_filter = 12; 
+      string message_id = 2;
+      string channel_id = 3;
+      int32 lamport_timestamp = 10;
+      repeated HistoryEntry causal_history = 11;
+      bytes bloom_filter = 12;
       // Optional field causes errors in nim protobuf generation. Removing for now as optional is implied anways.
-      bytes content = 20;                           
+      bytes content = 20;
+      string sender_id = 7;       // Original message sender's participant ID (routing hint)
   }

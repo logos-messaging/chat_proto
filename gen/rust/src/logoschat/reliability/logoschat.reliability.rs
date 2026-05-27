@@ -9,9 +9,14 @@ pub struct HistoryEntry {
     /// Unique identifier of the SDS message, as defined in `Message`
     #[prost(string, tag="1")]
     pub message_id: ::prost::alloc::string::String,
-    /// Optional information to help remote parties retrieve this SDS 
+    /// Optional information to help remote parties retrieve this SDS
     #[prost(bytes="bytes", tag="2")]
     pub retrieval_hint: ::prost::bytes::Bytes,
+    /// message; For example, A Waku deterministic message hash or routing payload hash
+    ///
+    /// Original message sender's participant ID (routing hint)
+    #[prost(string, tag="3")]
+    pub sender_id: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReliablePayload {
@@ -28,5 +33,8 @@ pub struct ReliablePayload {
     /// Optional field causes errors in nim protobuf generation. Removing for now as optional is implied anways.
     #[prost(bytes="bytes", tag="20")]
     pub content: ::prost::bytes::Bytes,
+    /// Original message sender's participant ID (routing hint)
+    #[prost(string, tag="7")]
+    pub sender_id: ::prost::alloc::string::String,
 }
 // @@protoc_insertion_point(module)
