@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package logoschat.store;
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Keypackage + Account Store Submissions
+///////////////////////////////////////////////////////////////////////////////
+
+// Submissions published over the delivery network for the keypackage + account
+// store to pick up by subscription.
+//
+// In both messages `payload` is opaque to the store: it verifies `signature`
+// over the received `payload` bytes under the advertised key, without decoding
+// the payload. The signed bytes and the transmitted bytes are identical, so
+// every verifier checks the signature over exactly what it received.
+
+message KeyPackageSubmissionV1 {
+
+    // 32-byte Ed25519 device verifying key. Both the verification key and the
+    // store's lookup key.
+    bytes device_id = 1;
+
+    // The signed payload: a timestamp header followed by the key package.
+    bytes payload = 2;
+
+    // 64-byte Ed25519 signature over `payload`, made by `device_id`'s key.
+    // Proof-of-possession: only that key's holder can publish under it.
+    bytes signature = 3;
+}
+
+message AccountSubmissionV1 {
+
+    // 32-byte Ed25519 account verifying key. Both the verification key and the
+    // store's lookup key.
+    bytes account_pub = 1;
+
+    // The signed device-list payload: a lamport-timestamped list of device
+    // verifying keys, so consumers can detect stale bundles.
+    bytes payload = 2;
+
+    // 64-byte Ed25519 signature over `payload`, made by the account key.
+    bytes signature = 3;
+}
