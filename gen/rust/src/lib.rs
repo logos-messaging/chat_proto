@@ -6,6 +6,10 @@ pub mod logoschat {
         pub mod private_v1 {
             include!("logoschat/convos/private_v1/logoschat.convos.private_v1.rs");
         }
+
+        pub mod group_v2 {
+            include!("logoschat/convos/group_v2/logoschat.convos.group_v2.rs");
+        }
     }
 
     pub mod encryption {
@@ -40,8 +44,10 @@ pub mod logoschat {
 #[cfg(test)]
 mod tests {
     use super::logoschat::{
+        convos::group_v2::{group_v2_frame, GroupV2Frame},
         encryption::{encrypted_payload::Encryption, EncryptedPayload, Plaintext},
-        invite::InvitePrivateV1,
+        inbox::{inbox_v2_frame, InboxV2Frame},
+        invite::{GroupV1HeavyInvite, InvitePrivateV1},
         store::{AccountSubmissionV1, KeyPackageSubmissionV1},
     };
     use bytes::Bytes;
@@ -117,5 +123,40 @@ mod tests {
         let decoded = AccountSubmissionV1::decode(&buf[..]).expect("Decoding failed");
 
         assert_eq!(decoded, submission);
+    }
+
+    /// Each payload is a `google.protobuf.BytesValue`: a message of its own,
+    /// whose field 1 holds the bytes.
+    #[test]
+    fn test_group_v2_frame_payload_is_a_bytes_value() {
+        let frame = GroupV2Frame {
+            sender_app_id: Bytes::from_static(b"app"),
+            payload: Some(group_v2_frame::Payload::DeMlsWrapper(b"inner".to_vec())),
+        };
+
+        let mut buf = Vec::new();
+        frame.encode(&mut buf).expect("Encoding failed");
+
+        assert_eq!(buf, b"\x12\x07\x0a\x05inner\x22\x03app");
+
+        let decoded = GroupV2Frame::decode(&buf[..]).expect("Decoding failed");
+
+        assert_eq!(decoded, frame);
+    }
+
+    #[test]
+    fn test_inbox_v2_frame_roundtrip() {
+        let frame = InboxV2Frame {
+            payload: Some(inbox_v2_frame::Payload::GroupV1(GroupV1HeavyInvite {
+                welcome_bytes: Bytes::from_static(b"welcome"),
+            })),
+        };
+
+        let mut buf = Vec::new();
+        frame.encode(&mut buf).expect("Encoding failed");
+
+        let decoded = InboxV2Frame::decode(&buf[..]).expect("Decoding failed");
+
+        assert_eq!(decoded, frame);
     }
 }

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package logoschat.convos.group_v2;
+
+import "google/protobuf/wrappers.proto";
+
+message GroupV2Frame {
+    oneof payload {
+        google.protobuf.BytesValue de_mls_wrapper = 2;
+        google.protobuf.BytesValue mls_commit_message = 3;
+    }
+    bytes sender_app_id = 4;
+}

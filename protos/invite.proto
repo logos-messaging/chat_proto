@@ -8,3 +8,7 @@ message InvitePrivateV1 {
     string discriminator = 5;
     encryption.EncryptedPayload initial_message = 6;
 }
+
+message GroupV1HeavyInvite {
+    bytes welcome_bytes = 1;
+}

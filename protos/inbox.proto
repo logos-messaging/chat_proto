@@ -13,3 +13,10 @@ message InboxV1Frame {
         invite.InvitePrivateV1 invite_private_v1 = 1;
     }
 }
+
+message InboxV2Frame {
+    oneof payload {
+        invite.GroupV1HeavyInvite group_v1 = 1;
+        bytes group_v2 = 2;
+    }
+}

@@ -7,4 +7,9 @@ pub struct InvitePrivateV1 {
     #[prost(message, optional, tag="6")]
     pub initial_message: ::core::option::Option<super::encryption::EncryptedPayload>,
 }
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct GroupV1HeavyInvite {
+    #[prost(bytes="bytes", tag="1")]
+    pub welcome_bytes: ::prost::bytes::Bytes,
+}
 // @@protoc_insertion_point(module)

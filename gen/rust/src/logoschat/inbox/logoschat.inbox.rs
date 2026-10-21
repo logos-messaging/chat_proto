@@ -18,4 +18,19 @@ pub mod inbox_v1_frame {
         InvitePrivateV1(super::super::invite::InvitePrivateV1),
     }
 }
+#[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
+pub struct InboxV2Frame {
+    #[prost(oneof="inbox_v2_frame::Payload", tags="1, 2")]
+    pub payload: ::core::option::Option<inbox_v2_frame::Payload>,
+}
+/// Nested message and enum types in `InboxV2Frame`.
+pub mod inbox_v2_frame {
+    #[derive(Clone, PartialEq, Eq, Hash, ::prost::Oneof)]
+    pub enum Payload {
+        #[prost(message, tag="1")]
+        GroupV1(super::super::invite::GroupV1HeavyInvite),
+        #[prost(bytes, tag="2")]
+        GroupV2(::prost::bytes::Bytes),
+    }
+}
 // @@protoc_insertion_point(module)
